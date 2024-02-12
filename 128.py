@@ -21,6 +21,9 @@ def promt():
 def mars():
     return render_template('index.html')
 
+@app.route('/promotion_image')
+def promim():
+    return render_template('promim.html')
 
 
 
