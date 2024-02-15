@@ -26,10 +26,9 @@ def promim():
     return render_template('promim.html')
 
 @app.route('/<title>')
-@app.route('/index/title')
+@app.route('/index/<title>')
 def kosms(title):
-    return render_template('base.html', title=title)
-
+    return render_template('index1.html', title=title)
 
 
 if __name__ == '__main__':
