@@ -54,11 +54,23 @@ def astro():
 def kosms(title):
     return render_template('index1.html', title=title)
 
-@app.route('/login', methods=['GET', 'POST'])
-def login():
-    form = LoginForm()
+class AutoLoginForm(FlaskForm):
+    surname = StringField('Фамилия', validators=[DataRequired()])
+    name = StringField('Имя', validators=[DataRequired()])
+    education = StringField('Образование', validators=[DataRequired()])
+    profession = StringField('Профессия', validators=[DataRequired()])
+    sex = StringField('Пол', validators=[DataRequired()])
+    motivation = StringField('Мотивация', validators=[DataRequired()])
+    ready = BooleanField('Готовы ли вы остаться на Марсе?')
+    submit = SubmitField('Войти')
+
+
+@app.route('/answer', methods=['GET', 'POST'])
+@app.route('/auto_answer', methods=['GET', 'POST'])
+def answer():
+    form = AutoLoginForm()
     if form.validate_on_submit():
-        return form.username.data
+        return render_template('success.html', form=form)
     return render_template('login.html', title='Авторизация', form=form)
 
 
